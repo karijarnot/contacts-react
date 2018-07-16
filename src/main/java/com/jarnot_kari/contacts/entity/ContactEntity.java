@@ -19,6 +19,23 @@ public class ContactEntity {
 	private String phoneNumber;
 	private String email;
 
+	public ContactEntity() {
+		
+	}
+	
+	
+	
+	public ContactEntity(Long id, String lastName, String firstName, String phoneNumber, String email) {
+		super();
+		this.id = id;
+		this.lastName = lastName;
+		this.firstName = firstName;
+		this.phoneNumber = phoneNumber;
+		this.email = email;
+	}
+
+
+
 	public Long getId() {
 		return id;
 	}

@@ -22032,8 +22032,8 @@
 			value: function loadFromServer() {
 				var _this2 = this;
 	
-				_axios2.default.get('/api/contactEntities').then(function (response) {
-					var contactEntities = response.data._embedded.contactEntities;
+				_axios2.default.get('/contacts-rest/').then(function (response) {
+					var contactEntities = response.data;
 					_this2.setState({ contactEntities: contactEntities });
 				}).catch(function (error) {
 					console.log(error);
@@ -22044,17 +22044,19 @@
 			value: function onDelete(contact) {
 				var _this3 = this;
 	
-				_axios2.default.delete(contact._links.self.href).then(function (res) {
+				_axios2.default.delete('/contacts-rest/' + contact.id).then(function (res) {
 					console.log(res);
 					_this3.loadFromServer();
 				});
 			}
 		}, {
 			key: 'onUpdate',
-			value: function onUpdate(contact, href) {
+			value: function onUpdate(contact, id) {
 				var _this4 = this;
 	
-				_axios2.default.put(href, contact).then(function (response) {
+				contact.id = id;
+	
+				_axios2.default.put('/contacts-rest/update', contact).then(function (response) {
 					console.log(response);
 					_this4.loadFromServer();
 				}).catch(function (error) {
@@ -22066,7 +22068,7 @@
 			value: function onCreate(contact) {
 				var _this5 = this;
 	
-				_axios2.default.post('/api/contactEntities', contact).then(function (response) {
+				_axios2.default.post('/contacts-rest/add', contact).then(function (response) {
 					console.log(response);
 					_this5.loadFromServer();
 				}).catch(function (error) {
@@ -22078,9 +22080,9 @@
 			value: function onSearch(contact) {
 				var _this6 = this;
 	
-				_axios2.default.get('/api/contactEntities/search/findByFirstNameContainingIgnoreCaseAndLastNameContainingIgnoreCase', { params: contact }).then(function (res) {
+				_axios2.default.post('/contacts-rest/search', contact).then(function (res) {
 	
-					var contactEntities = res.data._embedded.contactEntities;
+					var contactEntities = res.data;
 					_this6.setState({ contactEntities: contactEntities });
 				}).catch(function (error) {
 					console.log(error);
@@ -22135,7 +22137,7 @@
 				var _this8 = this;
 	
 				var contactEntities = this.props.contactEntities.map(function (contact) {
-					return React.createElement(Contact, { key: contact._links.self.href, contact: contact, onDelete: _this8.props.onDelete, onUpdate: _this8.props.onUpdate });
+					return React.createElement(Contact, { key: contact.id, contact: contact, onDelete: _this8.props.onDelete, onUpdate: _this8.props.onUpdate });
 				});
 	
 				return React.createElement(
@@ -22225,7 +22227,7 @@
 			key: 'render',
 			value: function render() {
 	
-				var modalId = 'updateModal' + this.props.contact._links.self.href.substring(this.props.contact._links.self.href.lastIndexOf('/') + 1);
+				var modalId = 'updateModal' + this.props.contact.id;
 	
 				return React.createElement(
 					'tr',
@@ -22439,7 +22441,7 @@
 			value: function handleSubmit(event) {
 				event.preventDefault();
 				var contact = this.state;
-				this.props.onUpdate(contact, this.props.selectedContact._links.self.href);
+				this.props.onUpdate(contact, this.props.selectedContact.id);
 	
 				$("#" + this.props.modalId).modal('hide');
 			}
@@ -22586,6 +22588,8 @@
 				event.preventDefault();
 	
 				var contact = this.state;
+	
+				console.log("contact firstName=" + contact.firstName);
 	
 				this.props.onCreate(contact);
 	

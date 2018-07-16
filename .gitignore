@@ -1,0 +1,9 @@
+target/
+node_modules/
+/.metadata/
+.classpath
+.project
+contacts.db
+log.txt
+.settings/org.eclipse.core.resources.prefs
+.settings/org.eclipse.jdt.core.prefs

@@ -25,9 +25,9 @@ class App extends React.Component {
 	
 	loadFromServer() {
 		
-		axios.get('/api/contactEntities')
+		axios.get('/contacts-rest/')
 		  .then(response => {
-		    const contactEntities = response.data._embedded.contactEntities;
+		    const contactEntities = response.data;
 		    this.setState({contactEntities});
 		  })
 		  .catch(error => {
@@ -37,16 +37,19 @@ class App extends React.Component {
 	
 	onDelete(contact) {
 		
-		axios.delete(contact._links.self.href).then(res => {
+		axios.delete('/contacts-rest/' + contact.id).then(res => {
 			console.log(res);
 			this.loadFromServer();
 		});
 		
 	}
 	
-	onUpdate(contact, href) {
+	onUpdate(contact, id) {
 		
-		axios.put(href, contact).then(response =>{
+		contact.id = id;
+		
+		
+		axios.put('/contacts-rest/update', contact).then(response =>{
 			console.log(response);
 			this.loadFromServer();
 		}).catch(error =>{
@@ -58,7 +61,7 @@ class App extends React.Component {
 	
 	onCreate(contact) {
 		
-		axios.post('/api/contactEntities', contact).then(response =>{
+		axios.post('/contacts-rest/add', contact).then(response =>{
 			console.log(response);
 			this.loadFromServer();
 		}).catch(error =>{
@@ -69,10 +72,10 @@ class App extends React.Component {
 	
 	onSearch(contact) {
 
-		axios.get('/api/contactEntities/search/findByFirstNameContainingIgnoreCaseAndLastNameContainingIgnoreCase', 
-			{params: contact}).then(res => {
+		axios.post('/contacts-rest/search', 
+			contact).then(res => {
     	  
-			const contactEntities = res.data._embedded.contactEntities;
+			const contactEntities = res.data;
 		    this.setState({contactEntities});
 		}).catch(error =>{
 			console.log(error);
@@ -112,7 +115,7 @@ class ContactList extends React.Component {
 	render() {
 		
 		var contactEntities = this.props.contactEntities.map(contact =>
-			<Contact key={contact._links.self.href} contact={contact} onDelete={this.props.onDelete} onUpdate={this.props.onUpdate} />
+			<Contact key={contact.id} contact={contact} onDelete={this.props.onDelete} onUpdate={this.props.onUpdate} />
 		);
 		
 		return (
@@ -156,7 +159,7 @@ class Contact extends React.Component {
 
 	render() {
 		
-		var modalId = 'updateModal'+ this.props.contact._links.self.href.substring(this.props.contact._links.self.href.lastIndexOf('/') + 1);
+		var modalId = 'updateModal'+ this.props.contact.id;
 			
 		return(
 			<tr>
@@ -283,7 +286,7 @@ class UpdateContactForm extends React.Component {
 	  handleSubmit(event) {
 		    event.preventDefault();
 		    const contact = this.state;
-		    this.props.onUpdate(contact, this.props.selectedContact._links.self.href);
+		    this.props.onUpdate(contact, this.props.selectedContact.id);
 		    
 		    $("#" + this.props.modalId).modal('hide');
 		  }
@@ -375,6 +378,8 @@ class AddContactForm extends React.Component {
 		    event.preventDefault();
 		    
 		    const contact = this.state;
+		    
+		    console.log("contact firstName=" + contact.firstName);
 		    
 		    this.props.onCreate(contact);
 		    
