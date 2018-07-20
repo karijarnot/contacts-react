@@ -7,6 +7,7 @@ module.exports = {
     devtool: 'sourcemaps',
     cache: true,
     debug: true,
+    noInfo: false,
     output: {
         path: __dirname,
         filename: './src/main/resources/static/built/bundle.js'
