@@ -1,6 +1,6 @@
 'use strict';
 
-import axios from 'axios';
+import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as contactActions from '../actions/contactActions';
@@ -9,8 +9,7 @@ import ContactList from './ContactList';
 import AddContactForm from './AddContactForm';
 import SearchContactForm from './SearchContactForm';
 
-const React = require('react');
-const ReactDOM = require('react-dom')
+import toastr from 'toastr';
 
 
 class App extends React.Component {
@@ -28,16 +27,19 @@ class App extends React.Component {
 	
 	onDelete(contact) {
 		this.props.actions.deleteContact(contact);
+		toastr.success('Contact deleted');
 	}
 	
 	onUpdate(contact, id) {
 		contact.id = id;
 		this.props.actions.updateContact(contact);
+		toastr.success('Contact updated');
 	}
 	
 	
 	onCreate(contact) {
 		this.props.actions.createContact(contact);
+		toastr.success('Contact added');
 	}
 	
 	onSearch(contact) {
