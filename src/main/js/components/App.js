@@ -38,7 +38,7 @@ class App extends React.Component {
 	
 	
 	onCreate(contact) {
-		this.props.actions.createContact(contact);
+		this.props.actions.addContact(contact);
 		toastr.success('Contact added');
 	}
 	
@@ -47,16 +47,19 @@ class App extends React.Component {
 	}
 	
 	onClearSearch() {
-		this.props.actions.loadContacts();
+		this.props.actions.listContacts();
 	}
 	
 	componentDidMount() {
-		this.props.actions.loadContacts();
+		this.props.actions.listContacts();
 	}
 	
   render() {
     return (
     	<div>
+    		<div>
+				<h1>Contacts</h1>
+			</div>
     		<ContactList contactEntities={this.props.contactEntities} onDelete={this.onDelete} onClearSearch={this.onClearSearch} onUpdate={this.onUpdate}  />
     		<AddContactForm onCreate={this.onCreate} />		
     		<SearchContactForm onSearch={this.onSearch} />

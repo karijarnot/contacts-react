@@ -7,6 +7,9 @@ import configureStore from './store/configureStore';
 import {loadContacts} from './actions/contactActions';
 import {Provider} from 'react-redux';
 
+import 'toastr/build/toastr.min.css';
+import 'react-table/react-table.css'
+
 
 const store = configureStore();
 

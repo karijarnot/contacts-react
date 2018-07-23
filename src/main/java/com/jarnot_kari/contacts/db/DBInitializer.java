@@ -22,20 +22,20 @@ public class DBInitializer {
 		wyssEntity.setLastName("Wyss");
 		wyssEntity.setEmail("johann@swissfamilyrobinson.com");
 		wyssEntity.setPhoneNumber("111-528-1743");
-		contactService.createContact(wyssEntity);
+		contactService.addContact(wyssEntity);
 
 		ContactEntity alcottEntity = new ContactEntity();
 		alcottEntity.setFirstName("Louisa May");
 		alcottEntity.setLastName("Alcott");
 		alcottEntity.setEmail("louisa@littlewomen.org");
 		alcottEntity.setPhoneNumber("112-112-1832");
-		contactService.createContact(alcottEntity);
+		contactService.addContact(alcottEntity);
 		
 		ContactEntity montgomeryEntity = new ContactEntity();
 		montgomeryEntity.setFirstName("L. M.");
 		montgomeryEntity.setLastName("Montgomery");
 		montgomeryEntity.setEmail("lucy@greengables.net");
 		montgomeryEntity.setPhoneNumber("113-130-1874");
-		contactService.createContact(montgomeryEntity);
+		contactService.addContact(montgomeryEntity);
 	}
 }

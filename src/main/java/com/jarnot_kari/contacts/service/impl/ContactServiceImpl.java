@@ -18,12 +18,12 @@ public class ContactServiceImpl implements ContactService {
 	private ContactsRepository contactsRepository;
 
 	@Override
-	public void createContact(ContactEntity contact) {
-		contactsRepository.save(contact);
+	public ContactEntity addContact(ContactEntity contact) {
+		return contactsRepository.save(contact);
 	}
 
 	@Override
-	public List<ContactEntity> findContacts(ContactEntity contact) {
+	public List<ContactEntity> searchContacts(ContactEntity contact) {
 		return contactsRepository.findByFirstNameContainingIgnoreCaseAndLastNameContainingIgnoreCase(contact.getFirstName(), contact.getLastName());
 	}
 

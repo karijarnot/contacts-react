@@ -39,7 +39,7 @@ public class ContactController {
 	 */
 	@PostMapping("/")
 	public String findContacts(Model model, ContactEntity contact) {
-		model.addAttribute("contacts", contactService.findContacts(contact));
+		model.addAttribute("contacts", contactService.searchContacts(contact));
 		model.addAttribute("contact", new ContactEntity());
 		return "contacts";
 	}
@@ -53,7 +53,7 @@ public class ContactController {
 	 */
 	@PostMapping("/add_contact")
 	public String addContact(ContactEntity contact,  RedirectAttributes redirectAttributes) {
-		contactService.createContact(contact);
+		contactService.addContact(contact);
 		redirectAttributes.addFlashAttribute("successMessage", "Contact successfully added.");
 		return "redirect:/";
 	}

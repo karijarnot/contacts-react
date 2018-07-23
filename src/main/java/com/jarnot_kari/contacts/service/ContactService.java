@@ -11,7 +11,7 @@ public interface ContactService {
 	 * 
 	 * @param contact
 	 */
-	public void createContact(ContactEntity contact);
+	public ContactEntity addContact(ContactEntity contact);
 	
 	/**
 	 * Finds contacts by Last Name and/or First Name
@@ -19,7 +19,7 @@ public interface ContactService {
 	 * @param contact
 	 * @return a list of matching contacts
 	 */
-	public List<ContactEntity> findContacts(ContactEntity contact);
+	public List<ContactEntity> searchContacts(ContactEntity contact);
 	
 	/**
 	 *  

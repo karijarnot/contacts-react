@@ -2,12 +2,12 @@ import * as types from './actionTypes';
 import axios from 'axios';
 
 
-export function loadContactsSuccess(contactEntities) {
-	return {type: types.LOAD_CONTACTS_SUCCESS, contactEntities};
+export function listContactsSuccess(contactEntities) {
+	return {type: types.LIST_CONTACTS_SUCCESS, contactEntities};
 }
 
-export function createContactSuccess(contactEntities) {
-	return {type: types.CREATE_CONTACT_SUCCESS, contactEntities};
+export function addContactSuccess(contactEntity) {
+	return {type: types.ADD_CONTACT_SUCCESS, contactEntity};
 }
 
 export function updateContactSuccess(contactEntity) {
@@ -27,27 +27,25 @@ export function searchContactsSuccess(contactEntities) {
 //these are the thunks. Anything that needs to call an api should be a thunk. The action creators
 //above should be pure functions.
 
-export function loadContacts() {
+export function listContacts() {
 	return function(dispatch) {
 		return axios.get('/contacts-rest/').then(response => {
 			const contactEntities = response.data;
-			dispatch(loadContactsSuccess(contactEntities));
+			dispatch(listContactsSuccess(contactEntities));
 		}).catch(error => {
 			throw(error);
 		});
 	};
 }
 
-export function createContact(contactEntity) {
+export function addContact(contactEntity) {
 	
 	return function(dispatch) {
 		return axios.post('/contacts-rest/add', contactEntity).then(response =>{
-			axios.get('/contacts-rest/').then(response => {
-				const contactEntities = response.data;
-				dispatch(loadContactsSuccess(contactEntities));
-			}).catch(error => {
-				throw(error);
-			});
+			console.log(response);
+			const contactEntityWithId = response.data;
+			dispatch(addContactSuccess(contactEntityWithId));
+			
 		}).catch(error => {
 			throw(error);
 		});

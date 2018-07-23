@@ -33,14 +33,14 @@ public class ContactRestController {
 
 
 	@PostMapping(path="/search", consumes=MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody List<ContactEntity> findContacts(@RequestBody ContactEntity contact) {
-		return contactService.findContacts(contact);
+	public @ResponseBody List<ContactEntity> searchContacts(@RequestBody ContactEntity contact) {
+		return contactService.searchContacts(contact);
 	}
 	
 	@PostMapping(path="/add", consumes=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(value=HttpStatus.OK)
-	public void addContact(@RequestBody ContactEntity contact) {
-		contactService.createContact(contact);
+	public @ResponseBody ContactEntity addContact(@RequestBody ContactEntity contact) {
+		return contactService.addContact(contact);
 	}
 	
 	@PutMapping(path="/update", consumes=MediaType.APPLICATION_JSON_VALUE)
