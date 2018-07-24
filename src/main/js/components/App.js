@@ -6,6 +6,7 @@ import {bindActionCreators} from 'redux';
 import * as contactActions from '../actions/contactActions';
 
 import ContactList from './ContactList';
+import ContactListTable from './ContactListTable';
 import AddContactForm from './AddContactForm';
 import SearchContactForm from './SearchContactForm';
 
@@ -61,20 +62,29 @@ class App extends React.Component {
 				<h1>Contacts</h1>
 			</div>
     		<ContactList contactEntities={this.props.contactEntities} onDelete={this.onDelete} onClearSearch={this.onClearSearch} onUpdate={this.onUpdate}  />
+    		<div className="text-center">
+				<button type="button" className="btn btn-primary" data-toggle="modal" data-target="#addModal">Add Contact</button>&nbsp;
+				<button type="button" className="btn btn-primary" data-toggle="modal" data-target="#searchModal">Search Contacts</button>&nbsp;
+				<button type="button" className="btn btn-primary" onClick={this.onClearSearch}>Display All Contacts</button>
+			</div>
     		<AddContactForm onCreate={this.onCreate} />		
     		<SearchContactForm onSearch={this.onSearch} />
+    		<ContactListTable contactEntities={this.props.contactEntities} onDelete={this.onDelete} onUpdate={this.onUpdate}  />
     	</div>
     );
   }
 }
 
+//This is where we tell react-redux what slice of the state in the store we need for this container component.
+//In this case, contactEntities
 function mapStateToProps(state, ownProps) {
 	return { contactEntities: state.contactEntities };
 }
 
+//This is where we tell react-redux what actions we'd like to have access to for this container component.
 function mapDispatchToProps(dispatch) {
 	return { actions: bindActionCreators(contactActions, dispatch) };
 }
 
-	
+//the connect function call makes the state and dispatch available via props to our component
 export default connect(mapStateToProps, mapDispatchToProps)(App);	
