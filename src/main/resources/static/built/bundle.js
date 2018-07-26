@@ -22120,19 +22120,17 @@
 						{ className: 'text-center' },
 						_react2.default.createElement(
 							'button',
-							{ type: 'button', className: 'btn btn-primary', 'data-toggle': 'modal', 'data-target': '#addModal' },
+							{ type: 'button', className: 'btn btn-primary m-1', 'data-toggle': 'modal', 'data-target': '#addModal' },
 							'Add Contact'
 						),
-						'\xA0',
 						_react2.default.createElement(
 							'button',
-							{ type: 'button', className: 'btn btn-primary', 'data-toggle': 'modal', 'data-target': '#searchModal' },
+							{ type: 'button', className: 'btn btn-primary m-1', 'data-toggle': 'modal', 'data-target': '#searchModal' },
 							'Search Contacts'
 						),
-						'\xA0',
 						_react2.default.createElement(
 							'button',
-							{ type: 'button', className: 'btn btn-primary', onClick: this.onClearSearch },
+							{ type: 'button', className: 'btn btn-primary m-1', onClick: this.onClearSearch },
 							'Display All Contacts'
 						)
 					),
@@ -26360,7 +26358,7 @@
 						null,
 						_react2.default.createElement(
 							'button',
-							{ className: 'btn btn-primary', 'data-toggle': 'modal', 'data-target': '#' + modalId },
+							{ className: 'btn btn-primary btn-sm', 'data-toggle': 'modal', 'data-target': '#' + modalId },
 							'Update'
 						),
 						_react2.default.createElement(_UpdateContactForm2.default, { selectedContact: this.props.contact, modalId: modalId, onUpdate: this.props.onUpdate })
@@ -26370,7 +26368,7 @@
 						null,
 						_react2.default.createElement(
 							'button',
-							{ className: 'btn btn-danger', onClick: this.handleDelete },
+							{ className: 'btn btn-danger btn-sm', onClick: this.handleDelete },
 							'Delete'
 						)
 					)
@@ -29542,7 +29540,7 @@
 					{ className: "text-center" },
 					_react2.default.createElement(
 						"button",
-						{ className: "btn btn-danger", onClick: this.handleDelete },
+						{ className: "btn btn-danger btn-sm", onClick: this.handleDelete },
 						"Delete"
 					)
 				);
@@ -29601,7 +29599,7 @@
 					{ className: 'text-center' },
 					_react2.default.createElement(
 						'button',
-						{ className: 'btn btn-primary', 'data-toggle': 'modal', 'data-target': '#' + modalId },
+						{ className: 'btn btn-primary btn-sm', 'data-toggle': 'modal', 'data-target': '#' + modalId },
 						'Update'
 					),
 					_react2.default.createElement(_UpdateContactForm2.default, { selectedContact: this.props.contact, modalId: modalId, onUpdate: this.props.onUpdate })
@@ -40872,7 +40870,6 @@
 	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
-	exports.default = contactReducer;
 	
 	var _actionTypes = __webpack_require__(219);
 	
@@ -40888,7 +40885,7 @@
 	
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 	
-	function contactReducer() {
+	var contactReducer = function contactReducer() {
 		var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _initialState2.default.contactEntities;
 		var action = arguments[1];
 	
@@ -40913,7 +40910,9 @@
 			default:
 				return state;
 		}
-	}
+	};
+	
+	exports.default = contactReducer;
 
 /***/ }),
 /* 268 */

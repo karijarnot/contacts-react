@@ -18,7 +18,7 @@ class DeleteContactButton extends React.Component {
 			
 		return(
 			<div className="text-center">
-				<button className="btn btn-danger" onClick={this.handleDelete}>Delete</button>
+				<button className="btn btn-danger btn-sm" onClick={this.handleDelete}>Delete</button>
 			</div>
 		)
 	}

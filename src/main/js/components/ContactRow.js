@@ -25,11 +25,11 @@ class ContactRow extends React.Component {
 				<td>{this.props.contact.phoneNumber}</td>
 				<td>{this.props.contact.email}</td>
 				<td>
-					<button className="btn btn-primary" data-toggle="modal" data-target={'#' + modalId}>Update</button>
+					<button className="btn btn-primary btn-sm" data-toggle="modal" data-target={'#' + modalId}>Update</button>
 					<UpdateContactForm selectedContact={this.props.contact} modalId={modalId} onUpdate={this.props.onUpdate}/>
 				</td>
 				<td>
-					<button className="btn btn-danger" onClick={this.handleDelete}>Delete</button>
+					<button className="btn btn-danger btn-sm" onClick={this.handleDelete}>Delete</button>
 				</td>
 			</tr>
 		)

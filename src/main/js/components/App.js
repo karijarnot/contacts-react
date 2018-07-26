@@ -63,9 +63,9 @@ class App extends React.Component {
 			</div>
     		<ContactList contactEntities={this.props.contactEntities} onDelete={this.onDelete} onClearSearch={this.onClearSearch} onUpdate={this.onUpdate}  />
     		<div className="text-center">
-				<button type="button" className="btn btn-primary" data-toggle="modal" data-target="#addModal">Add Contact</button>&nbsp;
-				<button type="button" className="btn btn-primary" data-toggle="modal" data-target="#searchModal">Search Contacts</button>&nbsp;
-				<button type="button" className="btn btn-primary" onClick={this.onClearSearch}>Display All Contacts</button>
+				<button type="button" className="btn btn-primary m-1" data-toggle="modal" data-target="#addModal">Add Contact</button>
+				<button type="button" className="btn btn-primary m-1" data-toggle="modal" data-target="#searchModal">Search Contacts</button>
+				<button type="button" className="btn btn-primary m-1" onClick={this.onClearSearch}>Display All Contacts</button>
 			</div>
     		<AddContactForm onCreate={this.onCreate} />		
     		<SearchContactForm onSearch={this.onSearch} />
