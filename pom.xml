@@ -116,15 +116,6 @@
 							<goal>webpack</goal>
 						</goals>
 					</execution>
-<!-- 					<execution> -->
-<!-- 						<id>npm test</id> -->
-<!-- 						<goals> -->
-<!-- 							<goal>npm</goal> -->
-<!-- 						</goals> -->
-<!-- 						<configuration> -->
-<!-- 							<arguments>test</arguments> -->
-<!-- 						</configuration> -->
-<!-- 					</execution> -->
 				</executions>
 			</plugin>
 

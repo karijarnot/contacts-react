@@ -19,11 +19,7 @@ class ContactListTable extends React.Component {
 			
 		return (
 			<div>
-				
-				<br/>
-				<h1>With React Table</h1>
-				
-			        <ReactTable
+				<ReactTable
 			          data={contactEntities}
 			        
 			          noDataText="No Contacts Loaded"
@@ -58,12 +54,12 @@ class ContactListTable extends React.Component {
 			            }
 			            ,
 			            {
-			              Header: "Actions",
+			              Header: "",
 			              columns: [
 			            	  {
 				                  Header: "",
 				                  Cell: ({row, original}) => (
-				                  <UpdateContactButton contact={original} onUpdate={this.props.onUpdate}  />
+				                  <UpdateContactButton contact={original} onSelectForUpdate={this.props.onSelectForUpdate} />
 				                 )
 				                },
 			            	  {

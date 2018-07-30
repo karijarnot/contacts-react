@@ -1,7 +1,7 @@
 import * as types from '../actions/actionTypes';
 import initialState from './initialState';
 
-const contactReducer = (state = initialState.contactEntities, action) => {
+const contactEntitiesReducer = (state = initialState.contactEntities, action) => {
 	switch(action.type) {
 		case types.LIST_CONTACTS_SUCCESS:
 			return action.contactEntities;
@@ -30,4 +30,4 @@ const contactReducer = (state = initialState.contactEntities, action) => {
 	}
 }
 
-export default contactReducer;
+export default contactEntitiesReducer;

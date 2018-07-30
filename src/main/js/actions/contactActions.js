@@ -22,6 +22,11 @@ export function searchContactsSuccess(contactEntities) {
 	return {type: types.SEARCH_CONTACTS_SUCCESS, contactEntities};
 }
 
+export function selectContactForUpdateSuccess(contactEntity) {
+	return {type: types.SELECT_CONTACT_FOR_UPDATE_SUCCESS, contactEntity};
+}
+
+
 
 
 //these are the thunks. Anything that needs to call an api should be a thunk. The action creators
@@ -39,10 +44,8 @@ export function listContacts() {
 }
 
 export function addContact(contactEntity) {
-	
 	return function(dispatch) {
 		return axios.post('/contacts-rest/add', contactEntity).then(response =>{
-			console.log(response);
 			const contactEntityWithId = response.data;
 			dispatch(addContactSuccess(contactEntityWithId));
 			
@@ -55,7 +58,6 @@ export function addContact(contactEntity) {
 export function updateContact(contactEntity) {
 	return function(dispatch) {
 		return axios.put('/contacts-rest/update', contactEntity).then(response =>{
-			console.log(response);
 			dispatch(updateContactSuccess(contactEntity));
 		}).catch(error => {
 			throw(error);
@@ -64,10 +66,8 @@ export function updateContact(contactEntity) {
 }
 
 export function deleteContact(contactEntity) {
-	
 	return function(dispatch) {
 		return axios.delete('/contacts-rest/' + contactEntity.id).then(res => {
-			console.log(res);
 			dispatch(deleteContactSuccess(contactEntity));
 		}).catch(error => {
 			throw(error);

@@ -19,5 +19,5 @@ render(
 	<Provider store={store}>
 		<App />
 	</Provider>,
-	document.getElementById('contacts-list')
+	document.getElementById('root')
 );
