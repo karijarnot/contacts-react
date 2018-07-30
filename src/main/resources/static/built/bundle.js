@@ -26240,18 +26240,10 @@
 		function ContactListTable(props) {
 			_classCallCheck(this, ContactListTable);
 	
-			var _this = _possibleConstructorReturn(this, (ContactListTable.__proto__ || Object.getPrototypeOf(ContactListTable)).call(this, props));
-	
-			_this.handleClearSearch = _this.handleClearSearch.bind(_this);
-			return _this;
+			return _possibleConstructorReturn(this, (ContactListTable.__proto__ || Object.getPrototypeOf(ContactListTable)).call(this, props));
 		}
 	
 		_createClass(ContactListTable, [{
-			key: 'handleClearSearch',
-			value: function handleClearSearch() {
-				this.props.onClearSearch();
-			}
-		}, {
 			key: 'render',
 			value: function render() {
 				var _this2 = this;

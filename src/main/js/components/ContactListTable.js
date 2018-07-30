@@ -6,14 +6,8 @@ import UpdateContactButton from './UpdateContactButton';
 class ContactListTable extends React.Component {
 	constructor(props){
 		super(props);
-		this.handleClearSearch = this.handleClearSearch.bind(this);
 	}
-	
-	handleClearSearch() {
-		this.props.onClearSearch();
-	}
-		
-		
+			
 	render() {
 		const {contactEntities} = this.props;
 			
