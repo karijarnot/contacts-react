@@ -26246,13 +26246,11 @@
 	
 				var contactEntities = this.props.contactEntities;
 	
-	
 				return _react2.default.createElement(
 					'div',
 					null,
 					_react2.default.createElement(_reactTable2.default, {
 						data: contactEntities,
-	
 						noDataText: 'No Contacts Loaded',
 						columns: [{
 							Header: "Name",
@@ -26292,7 +26290,6 @@
 								}
 							}]
 						}],
-	
 						defaultSorted: [{
 							id: "lastName",
 							desc: false
