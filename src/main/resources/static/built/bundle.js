@@ -58,7 +58,7 @@
 	
 	var _App2 = _interopRequireDefault(_App);
 	
-	var _configureStore = __webpack_require__(263);
+	var _configureStore = __webpack_require__(262);
 	
 	var _configureStore2 = _interopRequireDefault(_configureStore);
 	
@@ -66,11 +66,11 @@
 	
 	var _reactRedux = __webpack_require__(185);
 	
-	__webpack_require__(269);
+	__webpack_require__(268);
 	
-	__webpack_require__(274);
+	__webpack_require__(273);
 	
-	__webpack_require__(276);
+	__webpack_require__(275);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -22022,19 +22022,15 @@
 	
 	var _ContactListTable2 = _interopRequireDefault(_ContactListTable);
 	
-	var _AddContactForm = __webpack_require__(257);
-	
-	var _AddContactForm2 = _interopRequireDefault(_AddContactForm);
-	
-	var _SearchContactForm = __webpack_require__(258);
+	var _SearchContactForm = __webpack_require__(257);
 	
 	var _SearchContactForm2 = _interopRequireDefault(_SearchContactForm);
 	
-	var _UpdateContactForm = __webpack_require__(259);
+	var _ContactForm = __webpack_require__(258);
 	
-	var _UpdateContactForm2 = _interopRequireDefault(_UpdateContactForm);
+	var _ContactForm2 = _interopRequireDefault(_ContactForm);
 	
-	var _toastr = __webpack_require__(260);
+	var _toastr = __webpack_require__(259);
 	
 	var _toastr2 = _interopRequireDefault(_toastr);
 	
@@ -22142,9 +22138,9 @@
 							'Display All Contacts'
 						)
 					),
-					_react2.default.createElement(_AddContactForm2.default, { onCreate: this.onCreate }),
+					_react2.default.createElement(_ContactForm2.default, { selectedContact: {}, onSubmit: this.onCreate, modalId: 'addModal' }),
 					_react2.default.createElement(_SearchContactForm2.default, { onSearch: this.onSearch }),
-					_react2.default.createElement(_UpdateContactForm2.default, { selectedContact: this.props.selectedContact, onUpdate: this.onUpdate })
+					_react2.default.createElement(_ContactForm2.default, { selectedContact: this.props.selectedContact, onSubmit: this.onUpdate, modalId: 'updateModal' })
 				);
 			}
 		}]);
@@ -29270,189 +29266,6 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var AddContactForm = function (_React$Component) {
-		_inherits(AddContactForm, _React$Component);
-	
-		function AddContactForm(props) {
-			_classCallCheck(this, AddContactForm);
-	
-			var _this = _possibleConstructorReturn(this, (AddContactForm.__proto__ || Object.getPrototypeOf(AddContactForm)).call(this, props));
-	
-			_this.state = {
-				firstName: '',
-				lastName: '',
-				phoneNumber: '',
-				email: ''
-			};
-			_this.handleChange = _this.handleChange.bind(_this);
-			_this.handleSubmit = _this.handleSubmit.bind(_this);
-			_this.handleReset = _this.handleReset.bind(_this);
-			return _this;
-		}
-	
-		_createClass(AddContactForm, [{
-			key: 'handleChange',
-			value: function handleChange(event) {
-				var target = event.target;
-				var value = target.value;
-				var name = target.name;
-	
-				this.setState(_defineProperty({}, name, value));
-			}
-		}, {
-			key: 'handleSubmit',
-			value: function handleSubmit(event) {
-				event.preventDefault();
-	
-				var contact = this.state;
-	
-				this.props.onCreate(contact);
-	
-				this.setState({
-					firstName: '',
-					lastName: '',
-					phoneNumber: '',
-					email: ''
-				});
-	
-				$('#addModal').modal('hide');
-			}
-		}, {
-			key: 'handleReset',
-			value: function handleReset(event) {
-				this.setState({
-					firstName: '',
-					lastName: '',
-					phoneNumber: '',
-					email: ''
-				});
-			}
-		}, {
-			key: 'render',
-			value: function render() {
-				return _react2.default.createElement(
-					'div',
-					{ className: 'modal fade', id: 'addModal', tabIndex: '-1', role: 'dialog', 'aria-labelledby': 'addModalLabel', 'aria-hidden': 'true' },
-					_react2.default.createElement(
-						'div',
-						{ className: 'modal-dialog', role: 'document' },
-						_react2.default.createElement(
-							'div',
-							{ className: 'modal-content' },
-							_react2.default.createElement(
-								'div',
-								{ className: 'modal-header' },
-								_react2.default.createElement(
-									'h5',
-									{ className: 'modal-title', id: 'addModalLabel' },
-									'Add Contact'
-								),
-								_react2.default.createElement(
-									'button',
-									{ type: 'button', className: 'close', 'data-dismiss': 'modal', 'aria-label': 'Close' },
-									_react2.default.createElement(
-										'span',
-										{ 'aria-hidden': 'true' },
-										'\xD7'
-									)
-								)
-							),
-							_react2.default.createElement(
-								'form',
-								{ onSubmit: this.handleSubmit },
-								_react2.default.createElement(
-									'div',
-									{ className: 'modal-body' },
-									_react2.default.createElement(
-										'div',
-										{ className: 'form-group' },
-										_react2.default.createElement(
-											'label',
-											{ className: 'control-label', htmlFor: 'addFirstName' },
-											'First Name'
-										),
-										_react2.default.createElement('input', { type: 'text', className: 'form-control', id: 'addFirstName', name: 'firstName', value: this.state.firstName, onChange: this.handleChange, required: true })
-									),
-									_react2.default.createElement(
-										'div',
-										{ className: 'form-group' },
-										_react2.default.createElement(
-											'label',
-											{ className: 'control-label', htmlFor: 'addLastName' },
-											'Last Name'
-										),
-										_react2.default.createElement('input', { type: 'text', className: 'form-control', id: 'addLastName', name: 'lastName', value: this.state.lastName, onChange: this.handleChange, required: true })
-									),
-									_react2.default.createElement(
-										'div',
-										{ className: 'form-group' },
-										_react2.default.createElement(
-											'label',
-											{ className: 'control-label', htmlFor: 'addPhoneNumber' },
-											'Phone Number'
-										),
-										_react2.default.createElement('input', { type: 'text', className: 'form-control', id: 'addPhoneNumber', name: 'phoneNumber', value: this.state.phoneNumber, onChange: this.handleChange })
-									),
-									_react2.default.createElement(
-										'div',
-										{ className: 'form-group' },
-										_react2.default.createElement(
-											'label',
-											{ className: 'control-label', htmlFor: 'addEmail' },
-											'Email'
-										),
-										_react2.default.createElement('input', { type: 'text', className: 'form-control', id: 'addEmail', name: 'email', value: this.state.email, onChange: this.handleChange })
-									)
-								),
-								_react2.default.createElement(
-									'div',
-									{ className: 'modal-footer' },
-									_react2.default.createElement('input', { type: 'submit', value: 'Submit', className: 'btn btn-primary' }),
-									_react2.default.createElement('input', { type: 'reset', value: 'Reset', className: 'btn btn-secondary', onClick: this.handleReset }),
-									_react2.default.createElement(
-										'button',
-										{ type: 'button', className: 'btn btn-secondary', 'data-dismiss': 'modal' },
-										'Close'
-									)
-								)
-							)
-						)
-					)
-				);
-			}
-		}]);
-	
-		return AddContactForm;
-	}(_react2.default.Component);
-	
-	exports.default = AddContactForm;
-
-/***/ }),
-/* 258 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
 	var SearchContactForm = function (_React$Component) {
 		_inherits(SearchContactForm, _React$Component);
 	
@@ -29585,7 +29398,7 @@
 	exports.default = SearchContactForm;
 
 /***/ }),
-/* 259 */
+/* 258 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29608,13 +29421,13 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var UpdateContactForm = function (_React$Component) {
-		_inherits(UpdateContactForm, _React$Component);
+	var ContactForm = function (_React$Component) {
+		_inherits(ContactForm, _React$Component);
 	
-		function UpdateContactForm(props) {
-			_classCallCheck(this, UpdateContactForm);
+		function ContactForm(props) {
+			_classCallCheck(this, ContactForm);
 	
-			var _this = _possibleConstructorReturn(this, (UpdateContactForm.__proto__ || Object.getPrototypeOf(UpdateContactForm)).call(this, props));
+			var _this = _possibleConstructorReturn(this, (ContactForm.__proto__ || Object.getPrototypeOf(ContactForm)).call(this, props));
 	
 			_this.state = {
 				selectedContact: Object.assign({}, _this.props.selectedContact)
@@ -29625,7 +29438,7 @@
 			return _this;
 		}
 	
-		_createClass(UpdateContactForm, [{
+		_createClass(ContactForm, [{
 			key: 'componentWillReceiveProps',
 			value: function componentWillReceiveProps(nextProps) {
 				if (this.props.selectedContact.id != nextProps.selectedContact.id) {
@@ -29645,20 +29458,18 @@
 			value: function handleSubmit(event) {
 				event.preventDefault();
 				var contact = this.state.selectedContact;
-				this.props.onUpdate(contact, this.props.selectedContact.id);
+				this.props.onSubmit(contact, this.props.selectedContact.id);
+				this.setState({
+					selectedContact: {}
+				});
 	
-				$("#updateModal").modal('hide');
+				$('#' + this.props.modalId).modal('hide');
 			}
 		}, {
 			key: 'handleReset',
 			value: function handleReset(event) {
 				this.setState({
-					selectedContact: {
-						firstName: this.props.selectedContact.firstName,
-						lastName: this.props.selectedContact.lastName,
-						phoneNumber: this.props.selectedContact.phoneNumber,
-						email: this.props.selectedContact.email
-					}
+					selectedContact: Object.assign({}, this.props.selectedContact)
 				});
 			}
 		}, {
@@ -29667,7 +29478,7 @@
 	
 				return _react2.default.createElement(
 					'div',
-					{ className: 'modal fade', id: 'updateModal', tabIndex: '-1', role: 'dialog', 'aria-labelledby': 'updateModalLabel', 'aria-hidden': 'true' },
+					{ className: 'modal fade', id: this.props.modalId, tabIndex: '-1', role: 'dialog', 'aria-labelledby': 'contactModalLabel', 'aria-hidden': 'true' },
 					_react2.default.createElement(
 						'div',
 						{ className: 'modal-dialog', role: 'document' },
@@ -29679,8 +29490,8 @@
 								{ className: 'modal-header' },
 								_react2.default.createElement(
 									'h5',
-									{ className: 'modal-title', id: 'updateModalLabel' },
-									'Update Contact'
+									{ className: 'modal-title', id: 'contactModalLabel' },
+									'Contact'
 								),
 								_react2.default.createElement(
 									'button',
@@ -29703,40 +29514,40 @@
 										{ className: 'form-group' },
 										_react2.default.createElement(
 											'label',
-											{ className: 'control-label', htmlFor: 'updateFirstName' },
+											{ className: 'control-label', htmlFor: 'contactFirstName' },
 											'First Name'
 										),
-										_react2.default.createElement('input', { type: 'text', className: 'form-control', id: 'updateFirstName', name: 'firstName', value: this.state.selectedContact.firstName || '', onChange: this.handleChange, required: true })
+										_react2.default.createElement('input', { type: 'text', className: 'form-control', id: 'contactFirstName', name: 'firstName', value: this.state.selectedContact.firstName || '', onChange: this.handleChange, required: true })
 									),
 									_react2.default.createElement(
 										'div',
 										{ className: 'form-group' },
 										_react2.default.createElement(
 											'label',
-											{ className: 'control-label', htmlFor: 'updateLastName' },
+											{ className: 'control-label', htmlFor: 'contactLastName' },
 											'Last Name'
 										),
-										_react2.default.createElement('input', { type: 'text', className: 'form-control', id: 'updateLastName', name: 'lastName', value: this.state.selectedContact.lastName || '', onChange: this.handleChange, required: true })
+										_react2.default.createElement('input', { type: 'text', className: 'form-control', id: 'contactLastName', name: 'lastName', value: this.state.selectedContact.lastName || '', onChange: this.handleChange, required: true })
 									),
 									_react2.default.createElement(
 										'div',
 										{ className: 'form-group' },
 										_react2.default.createElement(
 											'label',
-											{ className: 'control-label', htmlFor: 'updatePhoneNumber' },
+											{ className: 'control-label', htmlFor: 'contactPhoneNumber' },
 											'Phone Number'
 										),
-										_react2.default.createElement('input', { type: 'text', className: 'form-control', id: 'updatePhoneNumber', name: 'phoneNumber', value: this.state.selectedContact.phoneNumber || '', onChange: this.handleChange })
+										_react2.default.createElement('input', { type: 'text', className: 'form-control', id: 'contactPhoneNumber', name: 'phoneNumber', value: this.state.selectedContact.phoneNumber || '', onChange: this.handleChange })
 									),
 									_react2.default.createElement(
 										'div',
 										{ className: 'form-group' },
 										_react2.default.createElement(
 											'label',
-											{ className: 'control-label', htmlFor: 'updateEmail' },
+											{ className: 'control-label', htmlFor: 'contactEmail' },
 											'Email'
 										),
-										_react2.default.createElement('input', { type: 'text', className: 'form-control', id: 'updateEmail', name: 'email', value: this.state.selectedContact.email || '', onChange: this.handleChange })
+										_react2.default.createElement('input', { type: 'text', className: 'form-control', id: 'contactEmail', name: 'email', value: this.state.selectedContact.email || '', onChange: this.handleChange })
 									)
 								),
 								_react2.default.createElement(
@@ -29757,13 +29568,13 @@
 			}
 		}]);
 	
-		return UpdateContactForm;
+		return ContactForm;
 	}(_react2.default.Component);
 	
-	exports.default = UpdateContactForm;
+	exports.default = ContactForm;
 
 /***/ }),
-/* 260 */
+/* 259 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
@@ -29780,7 +29591,7 @@
 	 */
 	/* global define */
 	(function (define) {
-	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(261)], __WEBPACK_AMD_DEFINE_RESULT__ = function ($) {
+	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(260)], __WEBPACK_AMD_DEFINE_RESULT__ = function ($) {
 	        return (function () {
 	            var $container;
 	            var listener;
@@ -30235,11 +30046,11 @@
 	
 	        })();
 	    }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	}(__webpack_require__(262)));
+	}(__webpack_require__(261)));
 
 
 /***/ }),
-/* 261 */
+/* 260 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -40609,14 +40420,14 @@
 
 
 /***/ }),
-/* 262 */
+/* 261 */
 /***/ (function(module, exports) {
 
 	module.exports = function() { throw new Error("define cannot be used indirect"); };
 
 
 /***/ }),
-/* 263 */
+/* 262 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -40628,11 +40439,11 @@
 	
 	var _redux = __webpack_require__(198);
 	
-	var _reducers = __webpack_require__(264);
+	var _reducers = __webpack_require__(263);
 	
 	var _reducers2 = _interopRequireDefault(_reducers);
 	
-	var _reduxThunk = __webpack_require__(268);
+	var _reduxThunk = __webpack_require__(267);
 	
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 	
@@ -40643,7 +40454,7 @@
 	}
 
 /***/ }),
-/* 264 */
+/* 263 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -40654,11 +40465,11 @@
 	
 	var _redux = __webpack_require__(198);
 	
-	var _contactEntitiesReducer = __webpack_require__(265);
+	var _contactEntitiesReducer = __webpack_require__(264);
 	
 	var _contactEntitiesReducer2 = _interopRequireDefault(_contactEntitiesReducer);
 	
-	var _selectedContactReducer = __webpack_require__(267);
+	var _selectedContactReducer = __webpack_require__(266);
 	
 	var _selectedContactReducer2 = _interopRequireDefault(_selectedContactReducer);
 	
@@ -40675,7 +40486,7 @@
 	exports.default = rootReducer;
 
 /***/ }),
-/* 265 */
+/* 264 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -40688,7 +40499,7 @@
 	
 	var types = _interopRequireWildcard(_actionTypes);
 	
-	var _initialState = __webpack_require__(266);
+	var _initialState = __webpack_require__(265);
 	
 	var _initialState2 = _interopRequireDefault(_initialState);
 	
@@ -40728,7 +40539,7 @@
 	exports.default = contactEntitiesReducer;
 
 /***/ }),
-/* 266 */
+/* 265 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -40742,7 +40553,7 @@
 	};
 
 /***/ }),
-/* 267 */
+/* 266 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -40755,7 +40566,7 @@
 	
 	var types = _interopRequireWildcard(_actionTypes);
 	
-	var _initialState = __webpack_require__(266);
+	var _initialState = __webpack_require__(265);
 	
 	var _initialState2 = _interopRequireDefault(_initialState);
 	
@@ -40778,7 +40589,7 @@
 	exports.default = selectedContactReducer;
 
 /***/ }),
-/* 268 */
+/* 267 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -40806,11 +40617,11 @@
 	exports['default'] = thunk;
 
 /***/ }),
-/* 269 */
+/* 268 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	
-	var content = __webpack_require__(270);
+	var content = __webpack_require__(269);
 	
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	
@@ -40824,7 +40635,7 @@
 	options.transform = transform
 	options.insertInto = undefined;
 	
-	var update = __webpack_require__(272)(content, options);
+	var update = __webpack_require__(271)(content, options);
 	
 	if(content.locals) module.exports = content.locals;
 	
@@ -40856,10 +40667,10 @@
 	}
 
 /***/ }),
-/* 270 */
+/* 269 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(271)(false);
+	exports = module.exports = __webpack_require__(270)(false);
 	// imports
 	
 	
@@ -40870,7 +40681,7 @@
 
 
 /***/ }),
-/* 271 */
+/* 270 */
 /***/ (function(module, exports) {
 
 	/*
@@ -40952,7 +40763,7 @@
 
 
 /***/ }),
-/* 272 */
+/* 271 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/*
@@ -41018,7 +40829,7 @@
 	var	singletonCounter = 0;
 	var	stylesInsertedAtTop = [];
 	
-	var	fixUrls = __webpack_require__(273);
+	var	fixUrls = __webpack_require__(272);
 	
 	module.exports = function(list, options) {
 		if (true) {
@@ -41338,7 +41149,7 @@
 
 
 /***/ }),
-/* 273 */
+/* 272 */
 /***/ (function(module, exports) {
 
 	
@@ -41433,11 +41244,11 @@
 
 
 /***/ }),
-/* 274 */
+/* 273 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	
-	var content = __webpack_require__(275);
+	var content = __webpack_require__(274);
 	
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	
@@ -41451,7 +41262,7 @@
 	options.transform = transform
 	options.insertInto = undefined;
 	
-	var update = __webpack_require__(272)(content, options);
+	var update = __webpack_require__(271)(content, options);
 	
 	if(content.locals) module.exports = content.locals;
 	
@@ -41483,10 +41294,10 @@
 	}
 
 /***/ }),
-/* 275 */
+/* 274 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(271)(false);
+	exports = module.exports = __webpack_require__(270)(false);
 	// imports
 	
 	
@@ -41497,11 +41308,11 @@
 
 
 /***/ }),
-/* 276 */
+/* 275 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	
-	var content = __webpack_require__(277);
+	var content = __webpack_require__(276);
 	
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	
@@ -41515,7 +41326,7 @@
 	options.transform = transform
 	options.insertInto = undefined;
 	
-	var update = __webpack_require__(272)(content, options);
+	var update = __webpack_require__(271)(content, options);
 	
 	if(content.locals) module.exports = content.locals;
 	
@@ -41547,10 +41358,10 @@
 	}
 
 /***/ }),
-/* 277 */
+/* 276 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(271)(false);
+	exports = module.exports = __webpack_require__(270)(false);
 	// imports
 	
 	

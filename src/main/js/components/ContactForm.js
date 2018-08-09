@@ -1,6 +1,6 @@
 import React from 'react';
 
-class UpdateContactForm extends React.Component {
+class ContactForm extends React.Component {
 	
 	constructor(props) {
 		super(props);
@@ -28,19 +28,17 @@ class UpdateContactForm extends React.Component {
 	  handleSubmit(event) {
 		    event.preventDefault();
 		    const contact = this.state.selectedContact;
-		    this.props.onUpdate(contact, this.props.selectedContact.id);
+		    this.props.onSubmit(contact, this.props.selectedContact.id);
+		    this.setState({
+		    	selectedContact: {}
+		    });
 		    
-		    $("#updateModal").modal('hide');
+		    $('#' + this.props.modalId).modal('hide');
 		  }
 	  
 	  handleReset(event) {
 		  this.setState({
-			  selectedContact: {
-					firstName: this.props.selectedContact.firstName,
-					lastName: this.props.selectedContact.lastName,
-					phoneNumber: this.props.selectedContact.phoneNumber,
-					email: this.props.selectedContact.email
-				}
+			  selectedContact: Object.assign({}, this.props.selectedContact)
 		  });
 
 	  }
@@ -50,11 +48,11 @@ class UpdateContactForm extends React.Component {
     return (
     		
     		
-    		<div className="modal fade" id="updateModal" tabIndex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
+    		<div className="modal fade" id={this.props.modalId} tabIndex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
     		<div className="modal-dialog" role="document">
     			<div className="modal-content">
     				<div className="modal-header">
-    					<h5 className="modal-title" id="updateModalLabel">Update Contact</h5>
+    					<h5 className="modal-title" id="contactModalLabel">Contact</h5>
     					<button type="button" className="close" data-dismiss="modal" aria-label="Close">
     						<span aria-hidden="true">&times;</span>
     					</button>
@@ -63,20 +61,20 @@ class UpdateContactForm extends React.Component {
     		<form onSubmit={this.handleSubmit}>
 			<div className="modal-body">
 				<div className="form-group">
-					<label className="control-label" htmlFor="updateFirstName">First Name</label> 
-					<input type="text" className="form-control" id="updateFirstName" name="firstName" value={this.state.selectedContact.firstName || ''} onChange={this.handleChange} required />
+					<label className="control-label" htmlFor="contactFirstName">First Name</label> 
+					<input type="text" className="form-control" id="contactFirstName" name="firstName" value={this.state.selectedContact.firstName || ''} onChange={this.handleChange} required />
 				</div>
 				<div className="form-group">
-					<label className="control-label" htmlFor="updateLastName">Last Name</label> 
-					<input type="text" className="form-control" id="updateLastName" name="lastName" value={this.state.selectedContact.lastName || ''} onChange={this.handleChange} required />
+					<label className="control-label" htmlFor="contactLastName">Last Name</label> 
+					<input type="text" className="form-control" id="contactLastName" name="lastName" value={this.state.selectedContact.lastName || ''} onChange={this.handleChange} required />
 				</div>
 				<div className="form-group">
-					<label className="control-label" htmlFor="updatePhoneNumber">Phone Number</label> 
-					<input type="text" className="form-control" id="updatePhoneNumber" name="phoneNumber" value={this.state.selectedContact.phoneNumber || ''} onChange={this.handleChange}  />
+					<label className="control-label" htmlFor="contactPhoneNumber">Phone Number</label> 
+					<input type="text" className="form-control" id="contactPhoneNumber" name="phoneNumber" value={this.state.selectedContact.phoneNumber || ''} onChange={this.handleChange}  />
 				</div>
 				<div className="form-group">
-					<label className="control-label" htmlFor="updateEmail">Email</label> 
-					<input type="text" className="form-control" id="updateEmail" name="email" value={this.state.selectedContact.email || ''} onChange={this.handleChange}  />
+					<label className="control-label" htmlFor="contactEmail">Email</label> 
+					<input type="text" className="form-control" id="contactEmail" name="email" value={this.state.selectedContact.email || ''} onChange={this.handleChange}  />
 				</div>
 			</div>
 			<div className="modal-footer">
@@ -94,4 +92,4 @@ class UpdateContactForm extends React.Component {
   }
 }
 
-export default UpdateContactForm;
+export default ContactForm;

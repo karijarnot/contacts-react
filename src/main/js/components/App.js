@@ -6,9 +6,8 @@ import {bindActionCreators} from 'redux';
 import * as contactActions from '../actions/contactActions';
 
 import ContactListTable from './ContactListTable';
-import AddContactForm from './AddContactForm';
 import SearchContactForm from './SearchContactForm';
-import UpdateContactForm from './UpdateContactForm';
+import ContactForm from './ContactForm';
 
 import toastr from 'toastr';
 
@@ -78,9 +77,9 @@ class App extends React.Component {
 				<button type="button" className="btn btn-primary m-1" data-toggle="modal" data-target="#searchModal">Search Contacts</button>
 				<button type="button" className="btn btn-primary m-1" onClick={this.onClearSearch}>Display All Contacts</button>
 			</div>
-    		<AddContactForm onCreate={this.onCreate} />		
+    		<ContactForm selectedContact={{}} onSubmit={this.onCreate} modalId="addModal" />		
     		<SearchContactForm onSearch={this.onSearch} />
-    		<UpdateContactForm selectedContact={this.props.selectedContact} onUpdate={this.onUpdate}/>
+    		<ContactForm selectedContact={this.props.selectedContact} onSubmit={this.onUpdate} modalId="updateModal" />
     	</div>
     );
   }
